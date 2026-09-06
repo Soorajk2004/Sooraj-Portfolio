@@ -1,0 +1,169 @@
+{
+  "hero": {
+    "name": "Sooraj",
+    "role": "Python & Django Developer — Fresher",
+    "tagline": "Final-year MCA student building robust web applications with Python, Django, REST APIs, and MySQL. Currently expanding full-stack capabilities with modern React & Tailwind CSS architectures.",
+    "status": "Open to opportunities",
+    "statusColor": "amber",
+    "location": "Kerala, IN"
+  },
+  "about": {
+    "bio": "I am a final-year Master of Computer Applications (MCA) student at APJ Abdul Kalam Technological University (KTU) in Kerala, maintaining a consistent 8.0 CGPA.\n\nMy engineering approach centers around structural clarity: designing clean relational schemas in MySQL, crafting modular, testable application logic in Django & Python, and writing clean REST APIs. My toolkit also includes practical experience in PHP, C, and C++, which provided a grounded understanding of memory management, algorithms, and core system concepts.\n\nRather than staying confined to backend templates, I am actively leveling up into modern full-stack development with React, Tailwind CSS, and JavaScript (ES6+), bridging solid server-side architectures with intuitive, responsive interfaces.",
+    "stats": [
+      {
+        "label": "Academic Standing",
+        "value": "8.0",
+        "sub": "CGPA — MCA Program",
+        "detail": "APJ Abdul Kalam Technological University, Kerala"
+      },
+      {
+        "label": "Hands-on Building",
+        "value": "2+",
+        "sub": "Years Active Development",
+        "detail": "Focused on Python, Django web backends & relational schemas"
+      },
+      {
+        "label": "Shipped Software",
+        "value": "6+",
+        "sub": "Full-Stack & AI Systems",
+        "detail": "Including LeavEase (RBAC) & ALAMARAi (Gemini AI)"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "leavease",
+      "name": "LeavEase",
+      "subtitle": "Enterprise Leave & Absence Management Platform",
+      "category": "Full-Stack Web App",
+      "year": "2025",
+      "featured": true,
+      "signatureDetail": "Role-Based Access Control (RBAC) & Multi-tier Approvals",
+      "description": "A comprehensive leave management system built with Django that eliminates paper trails with role-based access control, interactive department calendars, and real-time approval pipelines.",
+      "fullDescription": "LeavEase addresses workflow bottlenecks in academic institutions and corporate departments. Designed with strict RBAC, employees and faculty submit multi-day leave requests with mandatory medical certificate uploads (validated and securely stored). Department Heads and HR administrators review requests through interactive Chart.js analytics dashboards and synchronized FullCalendar.js schedule matrices.",
+      "highlights": [
+        "Multi-tier RBAC for Employees, Department Heads, and SuperAdmins",
+        "Interactive department schedule synchronization with FullCalendar.js",
+        "Real-time leave balance computation, accrual tracking, and Chart.js metrics",
+        "Secure encrypted file handling for medical certificates and supporting docs",
+        "Automated email notification triggers upon request status state-changes"
+      ],
+      "tags": ["Python", "Django 5.x", "MySQL", "FullCalendar.js", "Chart.js", "Bootstrap 5"],
+      "githubUrl": "https://github.com/sooraj-dev/leavease",
+      "demoUrl": ""
+    },
+    {
+      "id": "alamarai",
+      "name": "ALAMARAi",
+      "subtitle": "AI-Powered Wardrobe & Fashion Intelligence",
+      "category": "AI & Full-Stack Application",
+      "year": "2025",
+      "featured": true,
+      "signatureDetail": "Google Gemini 1.5 Multimodal API Vision & Styling Engine",
+      "description": "An intelligent wardrobe companion leveraging the Gemini API to analyze garment images, categorize clothing, and generate weather- and occasion-aware outfit combinations.",
+      "fullDescription": "ALAMARAi bridges computer vision and daily lifestyle organization. Users upload photos of their clothing; Gemini Multimodal API processes visual cues (fabric, pattern, color palette, formality) to automatically catalogue items into a relational schema. The app generates custom outfit recommendations tailored to regional weather forecasts, formal dress codes, or casual outings.",
+      "highlights": [
+        "Multimodal image classification using Google Gemini 1.5 Flash API",
+        "Context-aware outfit recommendation engine with temperature & event filters",
+        "Digital closet inventory management with color harmony evaluation",
+        "Responsive photo upload workflow with client-side image compression",
+        "Custom Django REST endpoints serving React frontend components"
+      ],
+      "tags": ["Python", "Django", "Gemini API", "React", "Tailwind CSS", "MySQL"],
+      "githubUrl": "https://github.com/sooraj-dev/alamarai",
+      "demoUrl": ""
+    },
+    {
+      "id": "smartmart-api",
+      "name": "SmartMart API",
+      "subtitle": "High-Throughput E-Commerce & Inventory Microservices",
+      "category": "Backend REST API",
+      "year": "2024",
+      "featured": false,
+      "signatureDetail": "JWT Stateless Authentication & Redis Query Caching",
+      "description": "Stateless Django REST Framework microservice architecture supporting product catalogs, atomic checkout transactions, and inventory replenishment webhooks.",
+      "fullDescription": "Engineered to practice microservice resilience and relational optimization. Features parameterized database queries to eliminate N+1 bottlenecks, JWT authentication tokens with refresh rotation, and comprehensive Swagger/OpenAPI documentation.",
+      "highlights": [
+        "Stateless JWT authentication with role permission classes",
+        "Database indexing and query optimization on product queries",
+        "Swagger UI / OpenAPI 3.0 schema generation with drf-spectacular",
+        "Atomic order transactions preventing inventory overselling"
+      ],
+      "tags": ["Python", "Django REST Framework", "MySQL", "JWT", "Postman", "Docker"],
+      "githubUrl": "https://github.com/sooraj-dev/smartmart-drf-api",
+      "demoUrl": ""
+    },
+    {
+      "id": "medvault",
+      "name": "MedVault Records",
+      "subtitle": "Clinical Record & Prescription Audit System",
+      "category": "Web Database Application",
+      "year": "2024",
+      "featured": false,
+      "signatureDetail": "3NF Normalized Schema with Strict Foreign Key Cascades",
+      "description": "A secure clinical registry designed with PHP and MySQL facilitating doctor consultations, digital prescription logs, and patient diagnostic histories.",
+      "fullDescription": "Developed during early MCA coursework to master core relational database theory, SQL stored procedures, and secure session management. Demonstrates fundamental understanding of database normalization, transaction isolation, and PHP server scripting.",
+      "highlights": [
+        "Normalized relational schema in 3rd Normal Form with audit logs",
+        "Prepared statements and SQL injection prevention",
+        "Digital prescription PDF generation and printing interface",
+        "Doctor appointment scheduler with automated slot verification"
+      ],
+      "tags": ["PHP 8.x", "MySQL", "HTML5/CSS3", "JavaScript", "Bootstrap"],
+      "githubUrl": "https://github.com/sooraj-dev/medvault-records",
+      "demoUrl": ""
+    }
+  ],
+  "skills": {
+    "languages": [
+      { "name": "Python", "level": "Primary / Advanced", "note": "Data structures, OOP, async routines" },
+      { "name": "SQL", "level": "Relational", "note": "Joins, indexing, 3NF schema design" },
+      { "name": "PHP", "level": "Academic Core", "note": "Session management, CRUD scripts" },
+      { "name": "C", "level": "System Concepts", "note": "Memory pointers, algorithmic foundation" },
+      { "name": "C++", "level": "OOP Systems", "note": "Classes, STL templates" },
+      { "name": "JavaScript (ES6+)", "level": "Frontend Logic", "note": "DOM, async/await, fetch APIs" },
+      { "name": "HTML5 & CSS3", "level": "Structure & Styling", "note": "Semantic markup, flexbox/grid" }
+    ],
+    "frameworks": [
+      { "name": "Django 5.x", "level": "Primary Backend", "note": "MVT architecture, ORM, auth middleware" },
+      { "name": "Django REST Framework", "level": "API Layer", "note": "Serializers, viewsets, permissions, JWT" },
+      { "name": "React", "level": "Expanding Focus", "note": "Hooks, state management, components" },
+      { "name": "Tailwind CSS", "level": "Design Systems", "note": "Utility-first layout, custom tokens" },
+      { "name": "Bootstrap 5", "level": "Responsive UI", "note": "Grid layouts, accessible components" },
+      { "name": "Chart.js", "level": "Data Visualization", "note": "Real-time charts, analytics graphs" },
+      { "name": "FullCalendar.js", "level": "Schedules", "note": "Interactive matrices, date event listeners" }
+    ],
+    "tools": [
+      { "name": "MySQL", "level": "Primary RDBMS", "note": "Foreign key cascades, transactions" },
+      { "name": "SQLite", "level": "Development DB", "note": "Rapid local development & test suites" },
+      { "name": "Google Gemini API", "level": "GenAI / Vision", "note": "Multimodal vision, prompt engineering" },
+      { "name": "Git & GitHub", "level": "Version Control", "note": "Branching, PRs, version discipline" },
+      { "name": "Postman", "level": "API Testing", "note": "Endpoint assertion, environment variables" },
+      { "name": "Linux / Shell", "level": "Environment", "note": "Bash scripts, file permissions" },
+      { "name": "VS Code", "level": "Editor", "note": "Linters, debuggers, virtualenv workflows" }
+    ]
+  },
+  "contact": {
+    "intro": "Direct channels. Fast turnaround.",
+    "email": "sooraj.dev.work@gmail.com",
+    "linkedin": "https://linkedin.com/in/sooraj-dev-mca",
+    "github": "https://github.com/sooraj-dev",
+    "cv": {
+      "label": "Curriculum Vitae",
+      "fileUrl": "",
+      "updatedAt": "2026-09-06"
+    },
+    "personalLinks": [
+      {
+        "label": "LinkedIn Profile",
+        "url": "https://linkedin.com/in/sooraj-dev-mca",
+        "icon": "Linkedin"
+      },
+      {
+        "label": "GitHub Repositories",
+        "url": "https://github.com/sooraj-dev",
+        "icon": "Github"
+      }
+    ]
+  }
+}
