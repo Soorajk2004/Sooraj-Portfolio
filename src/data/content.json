@@ -48,7 +48,14 @@
         "Secure encrypted file handling for medical certificates and supporting docs",
         "Automated email notification triggers upon request status state-changes"
       ],
-      "tags": ["Python", "Django 5.x", "MySQL", "FullCalendar.js", "Chart.js", "Bootstrap 5"],
+      "tags": [
+        "Python",
+        "Django 5.x",
+        "MySQL",
+        "FullCalendar.js",
+        "Chart.js",
+        "Bootstrap 5"
+      ],
       "githubUrl": "https://github.com/sooraj-dev/leavease",
       "demoUrl": ""
     },
@@ -69,7 +76,14 @@
         "Responsive photo upload workflow with client-side image compression",
         "Custom Django REST endpoints serving React frontend components"
       ],
-      "tags": ["Python", "Django", "Gemini API", "React", "Tailwind CSS", "MySQL"],
+      "tags": [
+        "Python",
+        "Django",
+        "Gemini API",
+        "React",
+        "Tailwind CSS",
+        "MySQL"
+      ],
       "githubUrl": "https://github.com/sooraj-dev/alamarai",
       "demoUrl": ""
     },
@@ -89,7 +103,14 @@
         "Swagger UI / OpenAPI 3.0 schema generation with drf-spectacular",
         "Atomic order transactions preventing inventory overselling"
       ],
-      "tags": ["Python", "Django REST Framework", "MySQL", "JWT", "Postman", "Docker"],
+      "tags": [
+        "Python",
+        "Django REST Framework",
+        "MySQL",
+        "JWT",
+        "Postman",
+        "Docker"
+      ],
       "githubUrl": "https://github.com/sooraj-dev/smartmart-drf-api",
       "demoUrl": ""
     },
@@ -109,45 +130,135 @@
         "Digital prescription PDF generation and printing interface",
         "Doctor appointment scheduler with automated slot verification"
       ],
-      "tags": ["PHP 8.x", "MySQL", "HTML5/CSS3", "JavaScript", "Bootstrap"],
+      "tags": [
+        "PHP 8.x",
+        "MySQL",
+        "HTML5/CSS3",
+        "JavaScript",
+        "Bootstrap"
+      ],
       "githubUrl": "https://github.com/sooraj-dev/medvault-records",
       "demoUrl": ""
     }
   ],
   "skills": {
     "languages": [
-      { "name": "Python", "level": "Primary / Advanced", "note": "Data structures, OOP, async routines" },
-      { "name": "SQL", "level": "Relational", "note": "Joins, indexing, 3NF schema design" },
-      { "name": "PHP", "level": "Academic Core", "note": "Session management, CRUD scripts" },
-      { "name": "C", "level": "System Concepts", "note": "Memory pointers, algorithmic foundation" },
-      { "name": "C++", "level": "OOP Systems", "note": "Classes, STL templates" },
-      { "name": "JavaScript (ES6+)", "level": "Frontend Logic", "note": "DOM, async/await, fetch APIs" },
-      { "name": "HTML5 & CSS3", "level": "Structure & Styling", "note": "Semantic markup, flexbox/grid" }
+      {
+        "name": "Python",
+        "level": "Primary / Advanced",
+        "note": "Data structures, OOP, async routines"
+      },
+      {
+        "name": "SQL",
+        "level": "Relational",
+        "note": "Joins, indexing, 3NF schema design"
+      },
+      {
+        "name": "PHP",
+        "level": "Academic Core",
+        "note": "Session management, CRUD scripts"
+      },
+      {
+        "name": "C",
+        "level": "System Concepts",
+        "note": "Memory pointers, algorithmic foundation"
+      },
+      {
+        "name": "C++",
+        "level": "OOP Systems",
+        "note": "Classes, STL templates"
+      },
+      {
+        "name": "JavaScript (ES6+)",
+        "level": "Frontend Logic",
+        "note": "DOM, async/await, fetch APIs"
+      },
+      {
+        "name": "HTML5 & CSS3",
+        "level": "Structure & Styling",
+        "note": "Semantic markup, flexbox/grid"
+      }
     ],
     "frameworks": [
-      { "name": "Django 5.x", "level": "Primary Backend", "note": "MVT architecture, ORM, auth middleware" },
-      { "name": "Django REST Framework", "level": "API Layer", "note": "Serializers, viewsets, permissions, JWT" },
-      { "name": "React", "level": "Expanding Focus", "note": "Hooks, state management, components" },
-      { "name": "Tailwind CSS", "level": "Design Systems", "note": "Utility-first layout, custom tokens" },
-      { "name": "Bootstrap 5", "level": "Responsive UI", "note": "Grid layouts, accessible components" },
-      { "name": "Chart.js", "level": "Data Visualization", "note": "Real-time charts, analytics graphs" },
-      { "name": "FullCalendar.js", "level": "Schedules", "note": "Interactive matrices, date event listeners" }
+      {
+        "name": "Django 5.x",
+        "level": "Primary Backend",
+        "note": "MVT architecture, ORM, auth middleware"
+      },
+      {
+        "name": "Django REST Framework",
+        "level": "API Layer",
+        "note": "Serializers, viewsets, permissions, JWT"
+      },
+      {
+        "name": "React",
+        "level": "Expanding Focus",
+        "note": "Hooks, state management, components"
+      },
+      {
+        "name": "Tailwind CSS",
+        "level": "Design Systems",
+        "note": "Utility-first layout, custom tokens"
+      },
+      {
+        "name": "Bootstrap 5",
+        "level": "Responsive UI",
+        "note": "Grid layouts, accessible components"
+      },
+      {
+        "name": "Chart.js",
+        "level": "Data Visualization",
+        "note": "Real-time charts, analytics graphs"
+      },
+      {
+        "name": "FullCalendar.js",
+        "level": "Schedules",
+        "note": "Interactive matrices, date event listeners"
+      }
     ],
     "tools": [
-      { "name": "MySQL", "level": "Primary RDBMS", "note": "Foreign key cascades, transactions" },
-      { "name": "SQLite", "level": "Development DB", "note": "Rapid local development & test suites" },
-      { "name": "Google Gemini API", "level": "GenAI / Vision", "note": "Multimodal vision, prompt engineering" },
-      { "name": "Git & GitHub", "level": "Version Control", "note": "Branching, PRs, version discipline" },
-      { "name": "Postman", "level": "API Testing", "note": "Endpoint assertion, environment variables" },
-      { "name": "Linux / Shell", "level": "Environment", "note": "Bash scripts, file permissions" },
-      { "name": "VS Code", "level": "Editor", "note": "Linters, debuggers, virtualenv workflows" }
+      {
+        "name": "MySQL",
+        "level": "Primary RDBMS",
+        "note": "Foreign key cascades, transactions"
+      },
+      {
+        "name": "SQLite",
+        "level": "Development DB",
+        "note": "Rapid local development & test suites"
+      },
+      {
+        "name": "Google Gemini API",
+        "level": "GenAI / Vision",
+        "note": "Multimodal vision, prompt engineering"
+      },
+      {
+        "name": "Git & GitHub",
+        "level": "Version Control",
+        "note": "Branching, PRs, version discipline"
+      },
+      {
+        "name": "Postman",
+        "level": "API Testing",
+        "note": "Endpoint assertion, environment variables"
+      },
+      {
+        "name": "Linux / Shell",
+        "level": "Environment",
+        "note": "Bash scripts, file permissions"
+      },
+      {
+        "name": "VS Code",
+        "level": "Editor",
+        "note": "Linters, debuggers, virtualenv workflows"
+      }
     ]
   },
   "contact": {
     "intro": "Direct channels. Fast turnaround.",
-    "email": "sooraj.dev.work@gmail.com",
-    "linkedin": "https://linkedin.com/in/sooraj-dev-mca",
-    "github": "https://github.com/sooraj-dev",
+    "email": "[EMAIL_ADDRESS]",
+    "linkedin": "https://www.linkedin.com/in/sooraj-k-85900sk",
+    "github": "https://github.com/Soorajk2004?tab=repositories",
     "cv": {
       "label": "Curriculum Vitae",
       "fileUrl": "",
@@ -156,12 +267,12 @@
     "personalLinks": [
       {
         "label": "LinkedIn Profile",
-        "url": "https://linkedin.com/in/sooraj-dev-mca",
+        "url": "https://www.linkedin.com/in/sooraj-k-85900sk",
         "icon": "Linkedin"
       },
       {
         "label": "GitHub Repositories",
-        "url": "https://github.com/sooraj-dev",
+        "url": "https://github.com/Soorajk2004?tab=repositories",
         "icon": "Github"
       }
     ]
