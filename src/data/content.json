@@ -263,18 +263,6 @@
       "label": "Curriculum Vitae",
       "fileUrl": "",
       "updatedAt": "2026-09-06"
-    },
-    "personalLinks": [
-      {
-        "label": "LinkedIn Profile",
-        "url": "https://www.linkedin.com/in/sooraj-k-85900sk",
-        "icon": "Linkedin"
-      },
-      {
-        "label": "GitHub Repositories",
-        "url": "https://github.com/Soorajk2004?tab=repositories",
-        "icon": "Github"
-      }
-    ]
+    }
   }
 }

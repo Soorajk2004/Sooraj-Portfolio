@@ -8,53 +8,30 @@ import {
   MapPin,
   Clock,
   ArrowUpRight,
-  Plus,
-  Trash2,
   Upload,
-  Globe,
   X,
   AlertTriangle,
-  FileText,
 } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, TwitterIcon, InstagramIcon } from './Icons';
+import { GithubIcon, LinkedinIcon } from './Icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useContent } from '../context/EditModeContext';
 import InlineEdit from './InlineEdit';
-
-const ICON_MAP = {
-  Github: GithubIcon,
-  Linkedin: LinkedinIcon,
-  Twitter: TwitterIcon,
-  Instagram: InstagramIcon,
-  Globe: Globe,
-  Mail: Mail,
-};
 
 export default function Contact() {
   const {
     content,
     updateContact,
     updateCV,
-    addPersonalLink,
-    removePersonalLink,
-    updatePersonalLink,
     isEditMode,
   } = useContent();
 
   const { contact } = content;
   const cv = contact.cv || { label: 'Curriculum Vitae', fileUrl: '', updatedAt: '' };
-  const personalLinks = contact.personalLinks || [];
 
   const [copied, setCopied] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const [cvInputUrl, setCvInputUrl] = useState('');
   const [cvWarning, setCvWarning] = useState('');
-
-  // Add Link Modal
-  const [isAddLinkModalOpen, setIsAddLinkModalOpen] = useState(false);
-  const [newLinkLabel, setNewLinkLabel] = useState('');
-  const [newLinkUrl, setNewLinkUrl] = useState('');
-  const [newLinkIcon, setNewLinkIcon] = useState('Globe');
 
   const copyEmail = () => {
     if (!contact.email) return;
@@ -108,28 +85,6 @@ export default function Contact() {
     setIsCVModalOpen(false);
   };
 
-  // Add new personal link
-  const handleAddPersonalLinkSubmit = (e) => {
-    e.preventDefault();
-    if (!newLinkLabel.trim() || !newLinkUrl.trim()) return;
-
-    addPersonalLink({
-      label: newLinkLabel.trim(),
-      url: newLinkUrl.trim(),
-      icon: newLinkIcon,
-    });
-
-    setNewLinkLabel('');
-    setNewLinkUrl('');
-    setNewLinkIcon('Globe');
-    setIsAddLinkModalOpen(false);
-  };
-
-  // Helper to resolve icon component
-  const getIconComponent = (iconName) => {
-    return ICON_MAP[iconName] || Globe;
-  };
-
   const hasCV = Boolean(cv.fileUrl && cv.fileUrl.trim() !== '');
 
   return (
@@ -158,24 +113,16 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Section Actions in Edit Mode */}
+        {/* Section Notice in Edit Mode */}
         {isEditMode && (
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 p-4 rounded-xl bg-elevation1 border border-amberAccent/20">
+          <div className="mb-6 p-4 rounded-xl bg-elevation1 border border-amberAccent/20">
             <span className="font-mono text-xs text-amberAccent">
-              Contact & Links Editor: Click texts to edit inline, add personal links, or manage CV.
+              Contact Editor: Click texts to edit inline or click "Replace CV" to update your resume document.
             </span>
-            <button
-              type="button"
-              onClick={() => setIsAddLinkModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amberAccent text-base font-semibold text-xs hover:bg-[#E8B475] transition-colors"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              <span>Add Personal Link</span>
-            </button>
           </div>
         )}
 
-        {/* Unified Contact & Personal Links Grid (Consistent Tiles) */}
+        {/* Core Contact Tiles Grid (2x2) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {/* 1. Email Tile */}
           <motion.div
@@ -407,86 +354,6 @@ export default function Contact() {
               </div>
             </motion.div>
           )}
-
-          {/* 5. Custom Personal Links Tiles */}
-          {personalLinks.map((link, pIdx) => {
-            // If link.url is empty and not in edit mode, hide tile
-            if (!isEditMode && (!link.url || link.url.trim() === '')) {
-              return null;
-            }
-
-            const LinkIcon = getIconComponent(link.icon);
-
-            return (
-              <motion.div
-                key={pIdx}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative p-7 rounded-2xl bg-elevation2 border border-[#303040] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1.5 hover:shadow-elev-lift hover:border-[#444458] shadow-elev-card-right mobile-shadow-clean"
-              >
-                {/* Delete button in Edit Mode */}
-                {isEditMode && (
-                  <button
-                    type="button"
-                    onClick={() => removePersonalLink(pIdx)}
-                    title="Remove link"
-                    className="absolute top-4 right-4 p-1 rounded-lg bg-elevation1 border border-rose-500/40 text-rose-400 hover:bg-rose-500 hover:text-white transition-colors"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-                )}
-
-                <div>
-                  <div className="flex items-center justify-between mb-4 pr-6">
-                    <span className="font-mono text-xs text-textMuted uppercase tracking-wider w-full">
-                      <InlineEdit
-                        value={link.label}
-                        onChange={(val) => updatePersonalLink(pIdx, 'label', val)}
-                        placeholder="Link Label"
-                      />
-                    </span>
-                    <div className="w-10 h-10 rounded-xl bg-elevation1 border border-[#343446] flex items-center justify-center text-amberAccent shrink-0">
-                      <LinkIcon className="w-5 h-5" />
-                    </div>
-                  </div>
-
-                  <div className="font-mono text-sm sm:text-base text-textPrimary font-medium mb-2 break-all">
-                    <InlineEdit
-                      value={link.url}
-                      onChange={(val) => updatePersonalLink(pIdx, 'url', val)}
-                      placeholder="https://..."
-                    />
-                  </div>
-
-                  <p className="text-xs text-textMuted leading-relaxed font-body mb-6">
-                    Custom channel & personal portfolio link
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-[#2A2A38] flex items-center justify-between">
-                  <a
-                    href={link.url || '#'}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-amberAccent hover:text-[#E8B475] transition-colors"
-                  >
-                    <span>Open link</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-
-                  <a
-                    href={link.url || '#'}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-lg bg-elevation1 border border-[#303042] text-textMuted hover:text-textPrimary transition-colors"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </motion.div>
-            );
-          })}
         </div>
 
         {/* Location & Timezone Tile */}
@@ -548,7 +415,7 @@ export default function Contact() {
                 </div>
               )}
 
-              {/* Option A: Upload PDF */}
+              {/* Option 1: Upload PDF */}
               <div className="mb-5 p-4 rounded-xl bg-elevation1 border border-[#2B2B38]">
                 <label className="block font-mono text-xs text-amberAccent uppercase tracking-wider mb-2">
                   Option 1: Upload PDF File
@@ -566,7 +433,7 @@ export default function Contact() {
                 </label>
               </div>
 
-              {/* Option B: External URL */}
+              {/* Option 2: External URL */}
               <form onSubmit={handleUrlSubmit} className="space-y-3">
                 <label className="block font-mono text-xs text-amberAccent uppercase tracking-wider">
                   Option 2: External Link (Drive, Dropbox, Cloud)
@@ -595,93 +462,6 @@ export default function Contact() {
                     className="px-4 py-1.5 rounded-xl bg-amberAccent text-base font-semibold text-xs hover:bg-[#E8B475] transition-colors"
                   >
                     Save URL
-                  </button>
-                </div>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* Add Personal Link Modal */}
-      <AnimatePresence>
-        {isAddLinkModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative w-full max-w-md rounded-2xl bg-elevation2 border border-[#3C3C50] shadow-elev-lift p-6 text-textPrimary"
-            >
-              <button
-                type="button"
-                onClick={() => setIsAddLinkModalOpen(false)}
-                className="absolute top-5 right-5 p-1.5 rounded-lg bg-elevation1 border border-[#303040] text-textMuted hover:text-textPrimary"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              <div className="mb-4">
-                <span className="font-mono text-xs text-amberAccent uppercase tracking-wider block mb-1">
-                  New Channel
-                </span>
-                <h3 className="font-display text-xl font-semibold">Add Personal Link</h3>
-              </div>
-
-              <form onSubmit={handleAddPersonalLinkSubmit} className="space-y-4">
-                <div>
-                  <label className="block font-mono text-xs text-textMuted mb-1">Label *</label>
-                  <input
-                    type="text"
-                    required
-                    value={newLinkLabel}
-                    onChange={(e) => setNewLinkLabel(e.target.value)}
-                    placeholder="e.g. X / Twitter, Personal Blog, Telegram"
-                    className="w-full px-3.5 py-2 rounded-xl bg-elevation1 border border-[#303042] text-sm text-textPrimary focus:border-amberAccent focus:outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-mono text-xs text-textMuted mb-1">URL *</label>
-                  <input
-                    type="url"
-                    required
-                    value={newLinkUrl}
-                    onChange={(e) => setNewLinkUrl(e.target.value)}
-                    placeholder="https://..."
-                    className="w-full px-3.5 py-2 rounded-xl bg-elevation1 border border-[#303042] text-sm text-textPrimary focus:border-amberAccent focus:outline-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-mono text-xs text-textMuted mb-1">Select Icon</label>
-                  <select
-                    value={newLinkIcon}
-                    onChange={(e) => setNewLinkIcon(e.target.value)}
-                    className="w-full px-3.5 py-2 rounded-xl bg-elevation1 border border-[#303042] text-sm text-textPrimary focus:border-amberAccent focus:outline-none"
-                  >
-                    <option value="Globe">Globe (Default Web)</option>
-                    <option value="Github">GitHub</option>
-                    <option value="Linkedin">LinkedIn</option>
-                    <option value="Twitter">X / Twitter</option>
-                    <option value="Instagram">Instagram</option>
-                    <option value="Mail">Mail</option>
-                  </select>
-                </div>
-
-                <div className="pt-3 border-t border-[#2E2E3E] flex items-center justify-end gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setIsAddLinkModalOpen(false)}
-                    className="px-3.5 py-1.5 rounded-xl bg-elevation1 text-xs font-medium text-textMuted hover:text-textPrimary"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="px-4 py-1.5 rounded-xl bg-amberAccent text-base font-semibold text-xs hover:bg-[#E8B475] transition-colors"
-                  >
-                    Add Link Tile
                   </button>
                 </div>
               </form>

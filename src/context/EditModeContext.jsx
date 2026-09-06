@@ -22,7 +22,8 @@ function mergeWithDefaults(saved, fallback) {
   });
 
   // Migrate CV: 'resumeUrl' -> 'contact.cv.fileUrl'
-  const savedContact = saved.contact || fallback.contact;
+  const savedContact = saved.contact ? { ...saved.contact } : fallback.contact;
+  delete savedContact.personalLinks;
   const migratedCV = {
     label: savedContact?.cv?.label || fallback.contact.cv.label || 'Curriculum Vitae',
     fileUrl: savedContact?.cv?.fileUrl || saved?.resumeUrl || savedContact?.resumeUrl || fallback.contact.cv.fileUrl || '',
@@ -47,9 +48,6 @@ function mergeWithDefaults(saved, fallback) {
       linkedin: savedContact?.linkedin !== undefined ? savedContact.linkedin : fallback.contact.linkedin,
       github: savedContact?.github !== undefined ? savedContact.github : fallback.contact.github,
       cv: migratedCV,
-      personalLinks: Array.isArray(savedContact?.personalLinks)
-        ? savedContact.personalLinks
-        : fallback.contact.personalLinks,
     },
   };
 }
@@ -239,38 +237,6 @@ export function EditModeProvider({ children }) {
     }));
   };
 
-  const addPersonalLink = (link) => {
-    updateContent((prev) => ({
-      ...prev,
-      contact: {
-        ...prev.contact,
-        personalLinks: [...(prev.contact.personalLinks || []), link],
-      },
-    }));
-  };
-
-  const removePersonalLink = (index) => {
-    updateContent((prev) => ({
-      ...prev,
-      contact: {
-        ...prev.contact,
-        personalLinks: prev.contact.personalLinks.filter((_, i) => i !== index),
-      },
-    }));
-  };
-
-  const updatePersonalLink = (index, field, value) => {
-    updateContent((prev) => {
-      const list = [...(prev.contact.personalLinks || [])];
-      if (list[index]) {
-        list[index] = { ...list[index], [field]: value };
-      }
-      return {
-        ...prev,
-        contact: { ...prev.contact, personalLinks: list },
-      };
-    });
-  };
 
   // Save to localStorage
   const saveContent = () => {
@@ -335,9 +301,6 @@ export function EditModeProvider({ children }) {
         updateSkill,
         updateContact,
         updateCV,
-        addPersonalLink,
-        removePersonalLink,
-        updatePersonalLink,
         saveContent,
         exportContent,
         resetContent,
