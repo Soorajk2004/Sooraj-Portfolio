@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Save, Download, RotateCcw, Check, Lock, X, Eye, EyeOff, Sparkles } from 'lucide-react';
+import { Save, Download, RotateCcw, Check, Lock, X, Eye, EyeOff, Info, AlertCircle } from 'lucide-react';
 import { useContent } from '../context/EditModeContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -16,6 +16,8 @@ export default function EditControls() {
     saveStatus,
     hasUnsavedChanges,
   } = useContent();
+
+  const isProduction = import.meta.env.PROD;
 
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -63,13 +65,24 @@ export default function EditControls() {
                 </div>
                 <div>
                   <h3 className="font-display text-xl font-semibold">Enable Edit Mode</h3>
-                  <p className="font-mono text-xs text-textMuted">Local Client-Side Storage</p>
+                  <p className="font-mono text-xs text-textMuted">
+                    {isProduction ? 'Static Hosting Preview Session' : 'Local Development Mode'}
+                  </p>
                 </div>
               </div>
 
-              <p className="text-sm text-textMuted font-body mb-5 leading-relaxed">
+              <p className="text-sm text-textMuted font-body mb-3 leading-relaxed">
                 Enter your passkey to customize headlines, projects, skills, and contact links directly inline.
               </p>
+
+              {isProduction && (
+                <div className="mb-4 p-3 rounded-xl bg-elevation2 border border-amberAccent/30 flex items-start gap-2.5 text-xs text-textMuted">
+                  <Info className="w-4 h-4 text-amberAccent shrink-0 mt-0.5" />
+                  <span>
+                    On GitHub Pages, edits run in a <strong className="text-amberAccent">browser session preview</strong>. Use <strong>Export JSON</strong> to download your changes and commit them to update the live site permanently.
+                  </span>
+                </div>
+              )}
 
               <form onSubmit={handlePasswordSubmit} className="space-y-4">
                 <div className="relative">
@@ -129,7 +142,7 @@ export default function EditControls() {
         )}
       </AnimatePresence>
 
-      {/* Floating Save Pill - Appears bottom-center only in Edit Mode */}
+      {/* Floating Save / Export Pill - Appears bottom-center only in Edit Mode */}
       <AnimatePresence>
         {isEditMode && (
           <motion.aside
@@ -137,7 +150,7 @@ export default function EditControls() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             aria-label="Edit Mode Controls"
-            className="fixed bottom-6 inset-x-0 mx-auto w-fit z-50 flex items-center gap-3 px-5 py-3 rounded-2xl bg-elevation2 border border-amberAccent/40 shadow-elev-lift mobile-shadow-clean"
+            className="fixed bottom-6 inset-x-0 mx-auto w-fit max-w-[92vw] z-50 flex flex-wrap items-center justify-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-elevation2 border border-amberAccent/40 shadow-elev-lift mobile-shadow-clean"
           >
             {/* Status indicator */}
             <div className="flex items-center gap-2">
@@ -153,18 +166,31 @@ export default function EditControls() {
                   }`}
                 />
               </span>
-              <span className="font-mono text-xs font-medium text-textPrimary hidden sm:inline">
-                {hasUnsavedChanges ? 'Unsaved edits' : 'Edit Mode Active'}
-              </span>
+
+              {isProduction ? (
+                <span className="font-mono text-xs font-medium text-amberAccent flex items-center gap-1">
+                  <AlertCircle className="w-3.5 h-3.5" />
+                  <span>Preview only, not saved to live site</span>
+                </span>
+              ) : (
+                <span className="font-mono text-xs font-medium text-textPrimary hidden sm:inline">
+                  {hasUnsavedChanges ? 'Unsaved edits' : 'Edit Mode (Local)'}
+                </span>
+              )}
             </div>
 
-            <div className="w-[1px] h-4 bg-[#36364A]" />
+            <div className="w-[1px] h-4 bg-[#36364A] hidden sm:block" />
 
-            {/* Save Button */}
+            {/* Save Button (Saves to localStorage in browser) */}
             <button
               type="button"
               onClick={saveContent}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${
+              title={
+                isProduction
+                  ? 'Saves to this browser session. To update live site, click Export JSON, replace content.json locally, and push.'
+                  : 'Save changes to local browser storage'
+              }
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
                 saveStatus === 'saved'
                   ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                   : 'bg-amberAccent text-base font-semibold hover:bg-[#E8B475]'
@@ -173,25 +199,25 @@ export default function EditControls() {
               {saveStatus === 'saved' ? (
                 <>
                   <Check className="w-3.5 h-3.5" />
-                  <span>Saved!</span>
+                  <span>{isProduction ? 'Cached in Session!' : 'Saved!'}</span>
                 </>
               ) : (
                 <>
                   <Save className="w-3.5 h-3.5" />
-                  <span>Save</span>
+                  <span>{isProduction ? 'Save in Session' : 'Save'}</span>
                 </>
               )}
             </button>
 
-            {/* Export JSON Button */}
+            {/* Export JSON Button (Crucial for making production updates permanent) */}
             <button
               type="button"
               onClick={exportContent}
-              title="Download content.json to persist edits permanently across devices"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-elevation1 border border-[#323246] text-xs font-medium text-textPrimary hover:border-amberAccent/40 transition-colors"
+              title="Download content.json to commit and deploy permanently"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-elevation1 border border-amberAccent/40 text-xs font-medium text-textPrimary hover:bg-amberAccent/10 transition-colors"
             >
               <Download className="w-3.5 h-3.5 text-amberAccent" />
-              <span className="hidden sm:inline">Export JSON</span>
+              <span>Export JSON</span>
             </button>
 
             {/* Reset Defaults Button */}
